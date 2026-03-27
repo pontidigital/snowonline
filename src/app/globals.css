@@ -1,26 +1,32 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-primary: #579af6;
+  --color-primary-dark: #3a7ad4;
+  --color-accent: #f5a623;
+  --color-dark: #1a2332;
+  --color-text: #3f4b5b;
+  --color-text-secondary: #6b7a8d;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f4f7fb;
+  --color-border: #e2e8f0;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html { scroll-behavior: smooth; }
+body { color: var(--color-text); background: var(--color-surface); }
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-surface-alt); }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 4px; }
+
+@keyframes snowfall {
+  0% { transform: translateY(-10vh) translateX(0); opacity: 1; }
+  50% { transform: translateY(50vh) translateX(-10px); opacity: 0.8; }
+  100% { transform: translateY(110vh) translateX(5px); opacity: 0; }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.snowflake {
+  position: fixed; top: -10px; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  pointer-events: none; animation: snowfall linear infinite; z-index: 50;
 }
